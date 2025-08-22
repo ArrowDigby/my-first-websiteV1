@@ -1,90 +1,141 @@
-/* -------------------- */
-/* FILE: style.css      */
-/* -------------------- */
+/* Import a Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-/* A simple "CSS Reset" is a good starting point. It removes default browser styling to make your site look more consistent everywhere. */
+/* Define color variables for easy theme management */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --background-color: #f0f2f5;
+    --font-color: #333;
+    --paper-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* This makes sizing elements more intuitive. */
+    box-sizing: border-box;
 }
 
 body {
-    background-color: black;
-    color: white;
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    margin: 0;
-    font-family: sans-serif;
-    text-align: center;
+    align-items: center;
+    background-color: var(--background-color);
+    color: var(--font-color);
+    /* Add a subtle gradient for depth */
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
 
-/* IMPROVEMENT TIP: Learn about the CSS Box Model. Every element is a rectangular box with margin, border, padding, and content. 
-   Understanding this is fundamental to controlling layout and spacing in CSS.
-   RESOURCE: MDN - The Box Model - https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model */
-
-header, footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #333;
-    color: #fff;
-    border-radius: 8px;
+/* Book styling */
+.book {
+    position: relative;
+    width: 350px;
+    height: 500px;
+    transition: transform 0.5s;
+    perspective: 1500px; /* Essential for 3D effect */
 }
 
-main {
-    max-width: 800px; /* Prevents the content from becoming too wide on large screens. */
-    margin: 20px auto; /* 'auto' for left/right margin is a common trick to center a block element. */
+/* Paper styling */
+.paper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: transform 0.5s;
+    background-color: var(--paper-color);
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+/* Front and Back of the paper */
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth. */
+}
+
+.front {
+    z-index: 1;
+}
+
+.back {
+    transform: rotateY(180deg);
+    z-index: 0;
+}
+
+/* Flipped state for paper */
+.book .flipped {
+    transform: rotateY(-180deg);
+}
+
+/* Z-index management for pages is handled by script.js */
+
+
+/* Content styling */
+.content {
+    text-align: center;
 }
 
 h1, h2 {
-    margin-bottom: 15px;
-    color: #333;
+    color: var(--primary-color);
+    margin-bottom: 20px;
 }
 
+p {
+    line-height: 1.6;
+}
+
+/* Navigation buttons */
 button {
-    display: inline-block;
-    padding: 10px 20px;
     border: none;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
-    border-radius: 5px;
-    cursor: pointer; /* Changes the mouse cursor to a pointer on hover, indicating it's clickable. */
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease; /* Smooth transition for the hover effect. */
+    font-weight: bold;
+    margin: 20px 10px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3; /* A simple interactive effect to provide feedback to the user. */
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px var(--shadow-color);
 }
 
-/* --- WHAT TO LEARN NEXT --- */
+button:focus {
+    outline: none;
+}
 
-/* 1. FLEXBOX & GRID: Modern CSS layout is primarily done with Flexbox and Grid. They are powerful and essential for creating complex, responsive layouts.
-   RESOURCES: 
-   - Flexbox Froggy (A game to learn Flexbox): https://flexboxfroggy.com/
-   - CSS Grid Garden (A game to learn Grid): https://cssgridgarden.com/
-   - A Complete Guide to Flexbox (CSS-Tricks): https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+#prev-btn {
+    background-color: #95a5a6;
+}
 
-/* 2. RESPONSIVE DESIGN: Use media queries to make your site look great on all screen sizes, from mobile phones to desktops.
-   RESOURCE: MDN - Media Queries - https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries */
+#prev-btn:hover {
+    background-color: #7f8c8d;
+}
 
-/* Example of a media query for small screens:
-   @media (max-width: 600px) {
-       body {
-           padding: 10px;
-       }
-       main {
-           padding: 15px;
-       }
-   }
-*/
+#action-button {
+    background-color: var(--secondary-color);
+}
 
-
-
+#action-button:hover {
+    background-color: #27ae60;
+}

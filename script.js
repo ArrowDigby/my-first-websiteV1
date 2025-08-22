@@ -1,45 +1,86 @@
-/* -------------------- */
-/* FILE: script.js      */
-/* -------------------- */
-
-// 'use strict'; is a good practice. It helps you write cleaner code by preventing you from using undeclared variables and catching common coding mistakes.
 'use strict';
 
-console.log('Script is connected! You can see this message in your browser\'s developer console.');
-// The console is your best friend for debugging. You can open it in most browsers by pressing F12 or Ctrl+Shift+I.
+// Get DOM Elements
+const prevBtn = document.querySelector("#prev-btn");
+const nextBtn = document.querySelector("#next-btn");
+const book = document.querySelector(".book");
+const papers = [
+    document.querySelector("#p1"),
+    document.querySelector("#p2")
+];
 
-/* --- DOM MANIPULATION --- */
-// The Document Object Model (DOM) is the browser's representation of your HTML page. JavaScript can interact with the DOM to change content, style, and structure.
+// Event Listeners
+prevBtn.addEventListener("click", goPrevPage);
+nextBtn.addEventListener("click", goNextPage);
 
-// 1. Select the HTML elements you want to work with. We use their IDs to find them.
-const aboutTextElement = document.getElementById('about-text');
-const actionButton = document.getElementById('action-button');
+// Business Logic
+let currentLocation = 1;
+const maxLocation = papers.length + 1;
 
-// 2. Add an "event listener" to the button.
-// An event listener waits for a specific event (like a 'click') to happen on an element, and then runs a function when it does.
-actionButton.addEventListener('click', () => {
-    // 3. This is the function that runs when the button is clicked.
-    // We can change the text content of the paragraph.
-    aboutTextElement.textContent = 'You clicked the button! This text was changed by JavaScript.';
-
-    // We can also change the CSS styles of the element.
-    aboutTextElement.style.color = '#007bff';
-    aboutTextElement.style.fontWeight = 'bold';
+// Set initial z-index for papers
+papers.forEach((paper, index) => {
+    paper.style.zIndex = papers.length - index;
 });
 
 
-/* --- WHAT TO LEARN NEXT --- */
+function openBook() {
+    book.style.transform = "translateX(50%)";
+    prevBtn.style.transform = "translateX(-180px)";
+    nextBtn.style.transform = "translateX(180px)";
+}
 
-/* 1. JAVASCRIPT FUNDAMENTALS: Before going further, make sure you have a solid grasp of the basics.
-   - Variables (let, const), Data Types (strings, numbers, booleans, arrays, objects).
-   - Functions (how to write reusable blocks of code).
-   - Loops and Conditionals (for, if/else - for making decisions in your code).
-   RESOURCE: JavaScript.info is a fantastic, comprehensive tutorial: https://javascript.info/ */
+function closeBook(isAtEnd) {
+    if (isAtEnd) {
+        book.style.transform = "translateX(100%)";
+    } else {
+        book.style.transform = "translateX(0%)";
+    }
+    prevBtn.style.transform = "translateX(0px)";
+    nextBtn.style.transform = "translateX(0px)";
+}
 
-/* 2. ASYNCHRONOUS JAVASCRIPT: This is how you make your website dynamic by loading data from external sources without freezing the page.
-   - Learn how to use the Fetch API to get data from APIs (e.g., weather data, movie databases).
-   - Key concepts: Promises, async/await.
-   RESOURCE: MDN - Asynchronous JavaScript - https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous */
+function goNextPage() {
+    if (currentLocation < maxLocation) {
+        if (currentLocation === 1) {
+            openBook();
+        }
 
-/* 3. FRAMEWORKS (Advanced): Once you're very comfortable with HTML, CSS, and "vanilla" JavaScript, you might explore a framework like React, Vue, or Svelte. 
-   - These are powerful tools that make building complex, interactive user interfaces much easier. Don't rush to this step! A solid foundation is the most important thing. */
+        papers[currentLocation - 1].classList.add("flipped");
+        papers[currentLocation - 1].style.zIndex = currentLocation;
+
+        if (currentLocation === papers.length) {
+            closeBook(true);
+        }
+
+        currentLocation++;
+    }
+}
+
+function goPrevPage() {
+    if (currentLocation > 1) {
+        currentLocation--;
+
+        if (currentLocation === 1) {
+            closeBook(false);
+        }
+
+        papers[currentLocation - 1].classList.remove("flipped");
+        papers[currentLocation - 1].style.zIndex = papers.length - (currentLocation - 1);
+
+        if (currentLocation === papers.length) {
+            openBook();
+        }
+    }
+}
+
+// Original button functionality
+const actionButton = document.getElementById('action-button');
+const aboutTextElement = document.querySelector('#p1 .back p');
+
+if (actionButton && aboutTextElement) {
+    actionButton.addEventListener('click', () => {
+        aboutTextElement.textContent = 'You clicked the button! This text was changed by JavaScript.';
+        aboutTextElement.style.color = 'var(--secondary-color)';
+        aboutTextElement.style.fontWeight = 'bold';
+    });
+}
