@@ -1,0 +1,66 @@
+<!-- -------------------- -->
+<!-- FILE: index.html     -->
+<!-- -------------------- -->
+<!DOCTYPE html>
+<!-- This declaration defines the document as an HTML5 document. It's the first thing in your file. -->
+<html lang="en">
+<!-- The `lang="en"` attribute helps search engines and screen readers understand the page's language. -->
+
+<head>
+    <!-- The <head> element contains meta-information about the page and links to scripts and stylesheets. It isn't visible on the page itself. -->
+    <meta charset="UTF-8">
+    <!-- UTF-8 is the standard character encoding. It ensures all text and symbols display correctly across different browsers and devices. -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This tag is essential for responsive design. It tells the browser to set the page width to the device's screen width and sets the initial zoom level. -->
+
+    <title>My First Website</title>
+    <!-- The <title> is what appears in the browser tab. It's also very important for Search Engine Optimization (SEO). -->
+
+    <link rel="stylesheet" href="style.css">
+    <!-- This line connects your HTML to your CSS file. Without it, your page would have no styling. -->
+</head>
+
+<body>
+    <!-- The <body> contains all the visible content of your webpage. -->
+
+    <!-- IMPROVEMENT TIP: Use semantic HTML tags instead of just <div>s. 
+         Tags like <header>, <nav>, <main>, <section>, <article>, and <footer> give structure and meaning to your content, 
+         which is great for accessibility (screen readers) and SEO.
+         RESOURCE: MDN Web Docs for HTML is the best place to learn: https://developer.mozilla.org/en-US/docs/Web/HTML -->
+    <header>
+        <h1>Welcome to My Website</h1>
+    </header>
+
+    <main>
+        <!-- The <main> tag should contain the primary, unique content of your page. -->
+        <section>
+            <h2>About This Template</h2>
+            <p id="about-text">This is a simple paragraph. You can edit this text to say whatever you like.</p>
+
+            <!-- IMPROVEMENT TIP: Interactive elements make a site more engaging. 
+                 You can add forms, buttons, and other elements that respond to user input. -->
+            <button id="action-button">Click Me!</button>
+        </section>
+
+        <section>
+            <h2>Next Steps</h2>
+            <p>Here is some more content to fill out the page and give you a place to practice.</p>
+
+            <!-- IMPROVEMENT TIP: Images make a site visually appealing. Always use the 'alt' attribute for accessibility. 
+                 It provides a text description for screen readers or if the image fails to load.
+                 Example: <img src="images/your-image.jpg" alt="A clear description of the image"> -->
+        </section>
+    </main>
+
+    <footer>
+        <!-- The <footer> is for content like copyright information, contact details, or site maps. -->
+        <p>&copy; 2025 Your Name Here</p>
+    </footer>
+
+    <!-- This <script> tag links your JavaScript file. 
+         It's often placed at the end of the <body> so that the HTML content can load and be ready before the script tries to interact with it. -->
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+/* -------------------- */
+/* FILE: style.css      */
+/* -------------------- */
+
+/* A simple "CSS Reset" is a good starting point. It removes default browser styling to make your site look more consistent everywhere. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* This makes sizing elements more intuitive. */
+}
+
+body {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+/* IMPROVEMENT TIP: Learn about the CSS Box Model. Every element is a rectangular box with margin, border, padding, and content. 
+   Understanding this is fundamental to controlling layout and spacing in CSS.
+   RESOURCE: MDN - The Box Model - https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model */
+
+header, footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    border-radius: 8px;
+}
+
+main {
+    max-width: 800px; /* Prevents the content from becoming too wide on large screens. */
+    margin: 20px auto; /* 'auto' for left/right margin is a common trick to center a block element. */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth. */
+}
+
+h1, h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer; /* Changes the mouse cursor to a pointer on hover, indicating it's clickable. */
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Smooth transition for the hover effect. */
+}
+
+button:hover {
+    background-color: #0056b3; /* A simple interactive effect to provide feedback to the user. */
+}
+
+/* --- WHAT TO LEARN NEXT --- */
+
+/* 1. FLEXBOX & GRID: Modern CSS layout is primarily done with Flexbox and Grid. They are powerful and essential for creating complex, responsive layouts.
+   RESOURCES: 
+   - Flexbox Froggy (A game to learn Flexbox): https://flexboxfroggy.com/
+   - CSS Grid Garden (A game to learn Grid): https://cssgridgarden.com/
+   - A Complete Guide to Flexbox (CSS-Tricks): https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+
+/* 2. RESPONSIVE DESIGN: Use media queries to make your site look great on all screen sizes, from mobile phones to desktops.
+   RESOURCE: MDN - Media Queries - https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries */
+
+/* Example of a media query for small screens:
+   @media (max-width: 600px) {
+       body {
+           padding: 10px;
+       }
+       main {
+           padding: 15px;
+       }
+   }
+*/
+
+
+
